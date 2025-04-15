@@ -1,0 +1,33 @@
+{
+  "name": "playwright-lighthouse-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "nrs": "npx playwright test --config=playwright-config/nrs.config.ts",
+    "nrs:prod": "cross-env ENVIRONMENT=prod npm run nrs",
+    "nrs:stage": "cross-env ENVIRONMENT=stage npm run nrs",
+
+    "rfn": "npx playwright test --config=playwright-config/rfn.config.ts",
+    "rfn:prod": "cross-env ENVIRONMENT=prod npm run rfn",
+    "rfn:stage": "cross-env ENVIRONMENT=stage npm run rfn",
+    
+    "report": "playwright show-report",
+    "format": "prettier --write ."
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "Playwright automation for Lighthouse audits",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.14.0",
+    "cross-env": "^7.0.3",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.7",
+    "lighthouse": "^12.5.1",
+    "playwright-lighthouse": "^4.0.0",
+    "prettier": "^3.5.3",
+    "puppeteer": "^24.6.0",
+    "yargs": "^17.7.2"
+  }
+}

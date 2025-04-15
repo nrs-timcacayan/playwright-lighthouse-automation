@@ -1,0 +1,25 @@
+# Built output
+dist/
+build/
+coverage/
+
+# Dependency directories
+node_modules/
+
+# Logs
+*.log
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-*
+*.swp
+*.swo
+
+# Test reports
+playwright-report/
+lighthouse-reports/
+
+# Specific files with custom formatting
+package.json
+package-lock.json
