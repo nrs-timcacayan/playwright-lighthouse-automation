@@ -1,17 +1,11 @@
-import { writeFileSync, mkdirSync, existsSync } from "fs";
-import { join } from "path";
-import { generateReport } from "lighthouse";
-import lighthouse from "lighthouse";
-import { connect, Page as PuppeteerPage } from "puppeteer";
-import { Page } from "@playwright/test";
-import {
-  LIGHTHOUSE_PORT,
-  LIGHTHOUSE_REPORT_DIR,
-} from "../../playwright.config";
-import {
-  lighthouseConfig,
-  lighthouseRunOptions,
-} from "../config/lighthouseConfig";
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
+import { join } from 'path';
+import { generateReport } from 'lighthouse';
+import lighthouse from 'lighthouse';
+import { connect, Page as PuppeteerPage } from 'puppeteer';
+import { Page } from '@playwright/test';
+import { LIGHTHOUSE_PORT, LIGHTHOUSE_REPORT_DIR } from '../../playwright.config';
+import { lighthouseConfig, lighthouseRunOptions } from '../config/lighthouse.config';
 
 // Use a closure to ensure we only create one directory per Node.js process
 const getReportDir = (() => {
@@ -20,7 +14,7 @@ const getReportDir = (() => {
   return () => {
     if (!reportDirPath) {
       // Create a timestamp for this test run
-      const runTimestamp = new Date().toISOString().replace(/:/g, "-");
+      const runTimestamp = new Date().toISOString().replace(/:/g, '-');
 
       // Create a single report directory for this test run
       reportDirPath = join(LIGHTHOUSE_REPORT_DIR, runTimestamp);
@@ -40,7 +34,7 @@ const getReportDir = (() => {
  */
 export function saveLighthouseReports({
   lhr,
-  reportName = "lighthouse-report",
+  reportName = 'lighthouse-report',
 }: {
   lhr: any;
   reportName?: string;
@@ -49,20 +43,12 @@ export function saveLighthouseReports({
   const reportDir = getReportDir();
 
   // Save JSON report
-  writeFileSync(
-    join(reportDir, `${finalReportName}.json`),
-    JSON.stringify(lhr, null, 2)
-  );
+  writeFileSync(join(reportDir, `${finalReportName}.json`), JSON.stringify(lhr, null, 2));
 
   // Save HTML report
-  writeFileSync(
-    join(reportDir, `${finalReportName}.html`),
-    generateReport(lhr, "html")
-  );
+  writeFileSync(join(reportDir, `${finalReportName}.html`), generateReport(lhr, 'html'));
 
-  console.log(
-    `Lighthouse report saved to: ${reportDir} with name: ${finalReportName}`
-  );
+  console.log(`Lighthouse report saved to: ${reportDir} with name: ${finalReportName}`);
 }
 
 /**
@@ -87,7 +73,7 @@ export async function runLighthouseAuditAndSaveReports(
     puppeteerPage = await puppeteerBrowser.newPage();
     TODO: "Refactor `setCookie` since it's deprecated";
     await puppeteerPage.setCookie(...cookies);
-    await puppeteerPage.goto(currentUrl, { waitUntil: "load" });
+    await puppeteerPage.goto(currentUrl, { waitUntil: 'load' });
 
     // Run Lighthouse with settings that match Chrome DevTools
     const result = await lighthouse(
@@ -101,7 +87,7 @@ export async function runLighthouseAuditAndSaveReports(
 
     // Add null check for result
     if (!result) {
-      throw new Error("Lighthouse audit failed to run");
+      throw new Error('Lighthouse audit failed to run');
     }
 
     // Save reports using the utility function

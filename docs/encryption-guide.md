@@ -77,7 +77,7 @@ main().catch(error => {
 Install the crypto-js package if you haven't already:
 
 ```bash
-npm install crypto-js
+npm install -D crypto-js
 ```
 
 ### Step 4: Encrypt Your Passwords

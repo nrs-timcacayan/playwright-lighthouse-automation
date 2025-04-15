@@ -38,6 +38,23 @@ npm run rfn:prod
 npm run rfn:stage
 ```
 
+### Running Tests with Tags
+
+Tests in this project are organized with tags for more selective test execution. To run tests with specific tags:
+
+```bash
+# Run NRS tests with the @end_user tag
+npx playwright test --config=playwright-config/nrs.config.ts --grep @end_user
+
+# Run RFN tests with the @end_user tag
+npx playwright test --config=playwright-config/rfn.config.ts --grep @end_user
+```
+
+Available tags:
+
+- `@end_user` - Tests that use the end user role
+- Add other tags as they are created in the test files
+
 ## Environment Setup
 
 ### Local Development
