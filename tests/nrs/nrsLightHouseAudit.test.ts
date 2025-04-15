@@ -9,7 +9,7 @@ import {
 import { runLighthouseAuditAndSaveReports } from '../../src/utils/lighthouse.utils';
 
 test('Audit NRS - Events/Active page', { tag: ['@end_user'] }, async ({ page }) => {
-  // No need to log in - we're using the authenticated state from login.setup.ts
+  // No need to log in - we're using the authenticated state from nrsLogin.setup.ts
   // Navigate directly to Events/Active page
   await navigateToEventsActivePage(page);
   await runLighthouseAuditAndSaveReports(page, 'MyNRS-Active');
